@@ -446,7 +446,7 @@ def desenha_caminho_dfs (mapa, root, encomenda, menu):
     botao_voltar = tk.Button(root, text="Voltar ao Menu Anterior", command=lambda: menu.abrir_menu("Encomendas"))
     botao_voltar.place(x=200, y=750)
 
-    botao_mapa = tk.Button(root, text="Visualizar Mapa da Cidade", command=lambda: c.mapa_info(mapa, root, menu))
+    botao_mapa = tk.Button(root, text="Visualizar Mapa da Cidade", command=lambda: mapa_info(mapa, root, menu))
     botao_mapa.place(x=200, y=500)
 
     botao_dfs = tk.Button(root, text="Visualizar Caminho DFS", command=lambda: desenha_caminho_dfs(mapa, root, encomenda, menu))
