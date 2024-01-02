@@ -378,6 +378,7 @@ def mapa_info(mapa, root, menu):
     botao_voltar = tk.Button(root, text="Voltar ao Menu Anterior", command=lambda: menu.abrir_menu("Encomendas"))
     botao_voltar.place(x=210, y=600)
 
+
 def desenha_caminho(mapa, root, encomenda, menu):
 
     for widget in root.winfo_children():
@@ -393,7 +394,21 @@ def desenha_caminho(mapa, root, encomenda, menu):
     desenha_mapa(mapa, canvas)
 
     botao_voltar = tk.Button(root, text="Voltar ao Menu Anterior", command=lambda: menu.abrir_menu("Encomendas"))
-    botao_voltar.place(x=210, y=600)
+    botao_voltar.place(x=200, y=750)
+
+    botao_mapa = tk.Button(root, text="Visualizar Mapa da Cidade", command=lambda: mapa_info(mapa, root, menu))
+    botao_mapa.place(x=200, y=500)
+
+    botao_dfs = tk.Button(root, text="Visualizar Caminho DFS", command=lambda: desenha_caminho_dfs(mapa, root, encomenda, menu))
+    botao_dfs.place(x=200, y=550)
+
+    botao_bfs = tk.Button(root, text="Visualizar Caminho BFS", command=lambda: desenha_caminho_bfs(mapa, root, encomenda, menu))
+    botao_bfs.place(x=200, y=600)
+
+    botao_estrela = tk.Button(root, text="Visualizar Caminho A*", command=lambda: desenha_caminho(mapa, root, encomenda, menu))
+    botao_estrela.place(x=200, y=650)
+
+    
 
     caminho = encomenda.get_caminho()
     pontos = []
@@ -414,6 +429,143 @@ def desenha_caminho(mapa, root, encomenda, menu):
 
         canvas.create_line(x1, y1, x2, y2, width=3, fill="blue")
 
+def desenha_caminho_dfs (mapa, root, encomenda, menu):
 
+    for widget in root.winfo_children():
+        widget.destroy()
 
+    titulo = tk.Label(root, text="HEALTH PLANET", font=("Helvetica", 40, "bold"), bg="white")
+    titulo.configure(highlightthickness=0, bg="white")
+    titulo.place(x=60, y=20)
 
+    canvas = tk.Canvas(root, width=1000, height=1000, bg="white", highlightthickness=0)
+    canvas.pack(side="right", padx=5)
+
+    desenha_mapa(mapa, canvas)
+
+    botao_voltar = tk.Button(root, text="Voltar ao Menu Anterior", command=lambda: menu.abrir_menu("Encomendas"))
+    botao_voltar.place(x=200, y=750)
+
+    botao_mapa = tk.Button(root, text="Visualizar Mapa da Cidade", command=lambda: c.mapa_info(mapa, root, menu))
+    botao_mapa.place(x=200, y=500)
+
+    botao_dfs = tk.Button(root, text="Visualizar Caminho DFS", command=lambda: desenha_caminho_dfs(mapa, root, encomenda, menu))
+    botao_dfs.place(x=200, y=550)
+
+    botao_bfs = tk.Button(root, text="Visualizar Caminho BFS", command=lambda: desenha_caminho_bfs(mapa, root, encomenda, menu))
+    botao_bfs.place(x=200, y=600)
+
+    botao_estrela = tk.Button(root, text="Visualizar Caminho A*", command=lambda: desenha_caminho(mapa, root, encomenda, menu))
+    botao_estrela.place(x=200, y=650)
+
+    caminho = encomenda.get_caminho_dfs()
+    pontos = []
+
+    for i, ponto in enumerate(caminho):
+        coords_string = caminho[i]
+        coords = coords_string.split('-')
+        pontos.append(coords)
+
+    for i in range(len(pontos) - 1):
+        coord1 = pontos[i]
+        x1 = float(coord1[0]) + 40
+        y1 = float(coord1[1]) + 25
+
+        coord2 = pontos[i + 1]
+        x2 = float(coord2[0]) + 40
+        y2 = float(coord2[1]) + 25
+
+        canvas.create_line(x1, y1, x2, y2, width=3, fill="blue")
+
+def desenha_caminho_bfs (mapa, root, encomenda, menu):
+    
+        for widget in root.winfo_children():
+            widget.destroy()
+    
+        titulo = tk.Label(root, text="HEALTH PLANET", font=("Helvetica", 40, "bold"), bg="white")
+        titulo.configure(highlightthickness=0, bg="white")
+        titulo.place(x=60, y=20)
+    
+        canvas = tk.Canvas(root, width=1000, height=1000, bg="white", highlightthickness=0)
+        canvas.pack(side="right", padx=5)
+    
+        desenha_mapa(mapa, canvas)
+    
+        botao_voltar = tk.Button(root, text="Voltar ao Menu Anterior", command=lambda: menu.abrir_menu("Encomendas"))
+        botao_voltar.place(x=200, y=750)
+
+        botao_mapa = tk.Button(root, text="Visualizar Mapa da Cidade", command=lambda: mapa_info(mapa, root, menu))
+        botao_mapa.place(x=200, y=500)
+
+        botao_dfs = tk.Button(root, text="Visualizar Caminho DFS", command=lambda: desenha_caminho_dfs(mapa, root, encomenda, menu))
+        botao_dfs.place(x=200, y=550)
+
+        botao_bfs = tk.Button(root, text="Visualizar Caminho BFS", command=lambda: desenha_caminho_bfs(mapa, root, encomenda, menu))
+        botao_bfs.place(x=200, y=600)
+
+        botao_estrela = tk.Button(root, text="Visualizar Caminho A*", command=lambda: desenha_caminho(mapa, root, encomenda, menu))
+        botao_estrela.place(x=200, y=650)
+
+        caminho = encomenda.get_caminho_bfs()
+        pontos = []
+    
+        for i, ponto in enumerate(caminho):
+            coords_string = caminho[i]
+            coords = coords_string.split('-')
+            pontos.append(coords)
+    
+        for i in range(len(pontos) - 1):
+            coord1 = pontos[i]
+            x1 = float(coord1[0]) + 40
+            y1 = float(coord1[1]) + 25
+    
+            coord2 = pontos[i + 1]
+            x2 = float(coord2[0]) + 40
+            y2 = float(coord2[1]) + 25
+    
+            canvas.create_line(x1, y1, x2, y2, width=3, fill="blue")
+
+def desenha_caminho_estrela (mapa, root, encomenda, menu):
+        
+            for widget in root.winfo_children():
+                widget.destroy()
+        
+            titulo = tk.Label(root, text="HEALTH PLANET", font=("Helvetica", 40, "bold"), bg="white")
+            titulo.configure(highlightthickness=0, bg="white")
+            titulo.place(x=60, y=20)
+        
+            canvas = tk.Canvas(root, width=1000, height=1000, bg="white", highlightthickness=0)
+            canvas.pack(side="right", padx=5)
+        
+            desenha_mapa(mapa, canvas)
+        
+            botao_voltar = tk.Button(root, text="Voltar ao Menu Anterior", command=lambda: menu.abrir_menu("Encomendas"))
+            botao_voltar.place(x=200, y=750)
+    
+            botao_mapa = tk.Button(root, text="Visualizar Mapa da Cidade", command=lambda: mapa_info(mapa, root, menu))
+            botao_mapa.place(x=200, y=500)
+    
+            botao_dfs = tk.Button(root, text="Visualizar Caminho DFS", command=lambda: desenha_caminho_dfs(mapa, root, encomenda, menu))
+            botao_dfs.place(x=200, y=550)
+    
+            botao_bfs = tk.Button(root, text="Visualizar Caminho BFS", command=lambda: desenha_caminho_bfs(mapa, root, encomenda, menu))
+            botao_bfs.place(x=200, y=600)
+    
+            botao_estrela = tk.Button(root, text="Visualizar Caminho A*", command=lambda: desenha_caminho(mapa, root, encomenda, menu))
+            botao_estrela.place(x=200, y=650)
+    
+            caminho = encomenda.get_caminho()
+            pontos = []
+        
+            for i, ponto in enumerate(caminho):
+                coords_string = caminho[i]
+                coords = coords_string.split('-')
+                pontos.append(coords)
+        
+            for i in range(len(pontos) - 1):
+                coord1 = pontos[i]
+                x1 = float(coord1[0]) + 40
+                y1 = float(coord1[1]) + 25
+        
+                coord2 = pontos[i + 1]
+                x2 = float(coord2[0]) + 40

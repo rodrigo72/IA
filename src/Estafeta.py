@@ -276,6 +276,11 @@ def entrega(nodos, estafetas):
                 fim = str(x1) + "-" + str(y1)
                 distancia, caminho = g.a_estrela(nodos, inicio, fim)
                 encomenda.set_caminho(caminho)
+                encomenda.set_caminho_estrela(caminho)
+                distancia, caminho = g.dfs(nodos, inicio, fim)
+                encomenda.set_caminho_dfs(caminho)
+                distancia, caminho = g.bfs(nodos, inicio, fim)
+                encomenda.set_caminho_bfs(caminho)
                 estafeta.atualiza_coords_atuais(x1, y1)
                 estafeta.atualiza_distancia_percorrida(round(distancia, 2))
 
@@ -283,6 +288,11 @@ def entrega(nodos, estafetas):
                 fim = str(x2) + "-" + str(y2)
                 distancia, caminho = g.a_estrela(nodos, inicio, fim)
                 encomenda.set_caminho(caminho)
+                encomenda.set_caminho_estrela(caminho)
+                distancia, caminho = g.dfs(nodos, inicio, fim)
+                encomenda.set_caminho_dfs(caminho)
+                distancia, caminho = g.bfs(nodos, inicio, fim)
+                encomenda.set_caminho_bfs(caminho)
                 estafeta.atualiza_coords_atuais(x2, y2)
                 estafeta.atualiza_distancia_percorrida(round(distancia, 2))
 

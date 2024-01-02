@@ -74,8 +74,17 @@ class Menu:
         c.desenha_caminho(mapa, self.root, encomenda_selecionada, menu)
 
         botao_mapa = tk.Button(self.root, text="Visualizar Mapa da Cidade", command=lambda: c.mapa_info(mapa, self.root, menu))
-        botao_mapa.place(x=205, y=500)
+        botao_mapa.place(x=200, y=500)
 
+        botao_dfs = tk.Button(self.root, text="Visualizar Caminho DFS", command=lambda: c.desenha_caminho_dfs(mapa, self.root, encomenda_selecionada, menu))
+        botao_dfs.place(x=200, y=550)
+
+        botao_bfs = tk.Button(self.root, text="Visualizar Caminho BFS", command=lambda: c.desenha_caminho_bfs(mapa, self.root, encomenda_selecionada, menu))
+        botao_bfs.place(x=200, y=600)
+
+        botao_estrela = tk.Button(self.root, text="Visualizar Caminho A*", command=lambda: c.desenha_caminho(mapa, self.root, encomenda_selecionada, menu))
+        botao_estrela.place(x=200, y=650)
+        
     # Menu que mostra todas as encomendas realizadas ao longo do programa
     def encomendas_info(self, mapa, menu, encomendas):
 

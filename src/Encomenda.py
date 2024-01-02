@@ -14,6 +14,9 @@ class Encomenda:
         self.estafeta = None
         self.velocidade = 0
         self.caminho = []
+        self.caminho_estrela = []
+        self.caminho_dfs = []
+        self.caminho_bfs = []
         self.id = str(uuid.uuid4()).replace('-', '')
 
     def get_id(self):
@@ -46,9 +49,27 @@ class Encomenda:
     def get_caminho(self):
         return self.caminho
 
+    def get_caminho_estrela(self):
+        return self.caminho_estrela
+    
+    def get_caminho_dfs(self):
+        return self.caminho_dfs
+    
+    def get_caminho_bfs(self):
+        return self.caminho_bfs
+    
     def set_caminho(self, caminho):
         self.caminho = caminho
+    
+    def set_caminho_estrela(self, caminho):
+        self.caminho_estrela = caminho
 
+    def set_caminho_dfs(self, caminho):
+        self.caminho_dfs = caminho
+    
+    def set_caminho_bfs(self, caminho):
+        self.caminho_bfs = caminho
+    
     def __str__(self):
         morada = self.morada
         morada.__str__()

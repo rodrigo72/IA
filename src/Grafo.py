@@ -1,5 +1,6 @@
 import heapq
 from math import sqrt
+from collections import deque
 
 
 class Grafo:
@@ -265,5 +266,54 @@ def a_estrela(grafo, inicio, fim):
                 heapq.heappush(heap, (round(prioridade, 0), proximo))
 
     return None, 0
+
+def bfs(grafo, inicio, fim):
+    fila = deque([inicio])
+    visitados = set()
+    caminho = {inicio: None}
+
+    while fila:
+        atual = fila.popleft()
+
+        if atual in visitados:
+            continue
+
+        visitados.add(atual)
+
+        if atual == fim:
+            caminho_reverso = []
+            while atual is not None:
+                caminho_reverso.append(atual)
+                atual = caminho[atual]
+            return len(caminho_reverso) - 1, list(reversed(caminho_reverso))
+
+        for proximo in grafo[atual]:
+            if proximo not in visitados:
+                fila.append(proximo)
+                caminho[proximo] = atual
+
+    return None, 0
+
+def dfs(grafo, inicio, fim):
+    pilha = [(inicio, [inicio])]
+    visitados = set()
+
+    while pilha:
+        atual, caminho = pilha.pop()
+
+        if atual in visitados:
+            continue
+
+        visitados.add(atual)
+
+        if atual == fim:
+            return len(caminho) - 1, caminho
+
+        for proximo in grafo[atual]:
+            if proximo not in visitados:
+                pilha.append((proximo, caminho + [proximo]))
+
+    return None, 0
+
 
 
