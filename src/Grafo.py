@@ -315,5 +315,33 @@ def dfs(grafo, inicio, fim):
 
     return None, 0
 
+def greedy (grafo, inicio, fim):
+    heap = [(0, inicio)]
+    visitados = set()
+    caminho = {inicio: None}
 
+    while heap:
+        (custo_atual, atual) = heapq.heappop(heap)
+
+        if atual in visitados:
+            continue
+
+        visitados.add(atual)
+
+        if atual == fim:
+            caminho_reverso = []
+            while atual is not None:
+                caminho_reverso.append(atual)
+                atual = caminho[atual]
+            return custo_atual, list(reversed(caminho_reverso))
+
+        for proximo in grafo[atual]:
+            novo_custo = heuristica(atual, proximo)
+
+            if proximo not in visitados:
+                caminho[proximo] = atual
+                prioridade = novo_custo
+                heapq.heappush(heap, (round(prioridade, 0), proximo))
+
+    return None, 0
 

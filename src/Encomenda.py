@@ -17,6 +17,7 @@ class Encomenda:
         self.caminho_estrela = []
         self.caminho_dfs = []
         self.caminho_bfs = []
+        self.caminho_greedy = []
         self.id = str(uuid.uuid4()).replace('-', '')
 
     def get_id(self):
@@ -58,6 +59,9 @@ class Encomenda:
     def get_caminho_bfs(self):
         return self.caminho_bfs
     
+    def get_caminho_greedy(self):
+        return self.caminho_greedy
+    
     def set_caminho(self, caminho):
         self.caminho = caminho
     
@@ -69,6 +73,9 @@ class Encomenda:
     
     def set_caminho_bfs(self, caminho):
         self.caminho_bfs = caminho
+
+    def set_caminho_greedy(self, caminho):
+        self.caminho_greedy = caminho
     
     def __str__(self):
         morada = self.morada

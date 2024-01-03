@@ -81,6 +81,9 @@ class Menu:
 
         botao_estrela = tk.Button(self.root, text="Visualizar Caminho A*", command=lambda: c.desenha_caminho(mapa, self.root, encomenda_selecionada, menu))
         botao_estrela.place(x=200, y=650)
+
+        botao_greedy = tk.Button(self.root, text="Visualizar Caminho Greedy", command=lambda: c.desenha_caminho_greedy(mapa, self.root, encomenda_selecionada, menu))
+        botao_greedy.place(x=200, y=700)
         
     # Menu que mostra todas as encomendas realizadas ao longo do programa
     def encomendas_info(self, mapa, menu, encomendas):
